@@ -117,6 +117,7 @@ public class PilihanTambahan extends Fragment {
                 String dipilih = deretPilihan.get(selected);
                 assert activity != null;
                 selected = INVALID_SELECTION;
+                panel.findViewById(R.id.aksi_panel_tambah).performClick();
                 activity.pembayaranDipilih(Integer.parseInt(dipilih));
             }
         });
