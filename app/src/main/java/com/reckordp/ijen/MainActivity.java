@@ -5,9 +5,14 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.Transformation;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -21,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
         Animation anim = new Animation() {
             @Override
             protected void applyTransformation(float interpolatedTime, Transformation t) {
+                super.applyTransformation(interpolatedTime, t);
                 float saldoInterpolated = interpolatedTime * saldo;
                 jumlahSaldo.setText(String.valueOf((int)saldoInterpolated));
             }
@@ -40,6 +46,8 @@ public class MainActivity extends AppCompatActivity {
                 Button btn = findViewById(R.id.tambah_button);
                 btn.setVisibility(View.VISIBLE);
                 btn.setOnClickListener(v -> {
+                    btn.setEnabled(false);
+                    aktifkanPanelPenambahan();
                 });
             }
 
@@ -49,5 +57,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         jumlahSaldo.startAnimation(anim);
+
+
+    }
+
+    private void aktifkanPanelPenambahan() {
+        FragmentTransaction trans = getSupportFragmentManager().beginTransaction();
+        trans.add(R.id.panel_serbaguna, new PilihanTambahan());
+        trans.commit();
     }
 }

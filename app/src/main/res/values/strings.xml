@@ -2,4 +2,7 @@
     <string name="app_name">Ijen</string>
     <string name="icon_ijen">Icon Ijen</string>
     <string name="tambah_button">Tambah</string>
+    <string name="panel_penambahan">Panel penambahan</string>
+    <string name="bayar">Bayar</string>
+    <string name="indikator_panel_penambahan">Indikator panel penambahan</string>
 </resources>
