@@ -122,7 +122,6 @@ public class PilihanTambahan extends Fragment {
         pilihan.measure(0, 0);
         totalPilihanHeight = pilihan.getMeasuredHeight() * deretPilihan.size();
         totalPilihanHeight += pilihan.getDividerHeight() * (deretPilihan.size() - 1);
-        Log.i("UUU", String.valueOf(totalPilihanHeight));
 
         if (!expanded) {
             ViewGroup.LayoutParams params = pilihan.getLayoutParams();
