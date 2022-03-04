@@ -22,9 +22,11 @@ import java.util.ArrayList;
 public class PilihanTambahan extends Fragment {
 
     private final int INDIKATOR_PANEL_ANGLE = 180;
+    private final int INVALID_SELECTION = -1;
+
     private boolean expanded = false;
     private boolean hasStarted = false;
-    private int selected = -1;
+    private int selected = INVALID_SELECTION;
     private int totalPilihanHeight;
     private ViewGroup panel;
 
@@ -110,11 +112,11 @@ public class PilihanTambahan extends Fragment {
 
         Button bayar = panel.findViewById(R.id.bayar);
         bayar.setOnClickListener(v -> {
-            if (selected != -1) {
+            if (selected != INVALID_SELECTION) {
                 MainActivity activity = (MainActivity) getActivity();
                 String dipilih = deretPilihan.get(selected);
                 assert activity != null;
-                selected = -1;
+                selected = INVALID_SELECTION;
                 activity.pembayaranDipilih(Integer.parseInt(dipilih));
             }
         });
