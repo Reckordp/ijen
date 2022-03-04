@@ -47,19 +47,20 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void tambahSaldo(int tambahan) {
-        TextView jumlahSaldo = findViewById(R.id.jumlah_saldo);
-        int saldo = 10000;
+        TextView jumlahSaldoText = findViewById(R.id.jumlah_saldo);
+        int saldoAwal = jumlahSaldo;
+        jumlahSaldo += tambahan;
 
         Animation anim = new Animation() {
             @Override
             protected void applyTransformation(float interpolatedTime, Transformation t) {
                 super.applyTransformation(interpolatedTime, t);
-                float saldoInterpolated = interpolatedTime * saldo;
-                jumlahSaldo.setText(String.valueOf((int)saldoInterpolated));
+                float saldoInterpolated = interpolatedTime * tambahan + saldoAwal;
+                jumlahSaldoText.setText(String.valueOf((int)saldoInterpolated));
             }
         };
 
-        anim.setStartOffset(1000);
+        anim.setStartOffset(500);
         anim.setDuration(2500);
 
         anim.setAnimationListener(new Animation.AnimationListener() {
@@ -79,6 +80,6 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-        jumlahSaldo.startAnimation(anim);
+        jumlahSaldoText.startAnimation(anim);
     }
 }
