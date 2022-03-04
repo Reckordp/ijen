@@ -28,6 +28,7 @@ public class PilihanTambahan extends Fragment {
 
     private final int INDIKATOR_PANEL_ANGLE = 180;
     private boolean hasStarted = false;
+    private int selected = -1;
 
 
     @Nullable
@@ -80,11 +81,14 @@ public class PilihanTambahan extends Fragment {
         );
         pilihan.setAdapter(adapter);
 
-        panel.findViewById(R.id.bayar).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        pilihan.setOnItemClickListener((parent, view, position, id) -> selected = position);
+
+        panel.findViewById(R.id.bayar).setOnClickListener(v -> {
+            if (selected != -1) {
                 MainActivity activity = (MainActivity) getActivity();
-                String dipilih = deretPilihan.get((int) pilihan.getSelectedItemId());
+                String dipilih = deretPilihan.get(selected);
+                assert activity != null;
+                selected = -1;
                 activity.pembayaranDipilih(Integer.parseInt(dipilih));
             }
         });
