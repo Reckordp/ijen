@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.Transformation;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.FrameLayout;
@@ -43,8 +44,7 @@ public class PilihanTambahan extends Fragment {
                 protected void applyTransformation(float interpolatedTime, Transformation t) {
                     super.applyTransformation(interpolatedTime, t);
                     float angle = origin + INDIKATOR_PANEL_ANGLE * interpolatedTime;
-                    Log.i("AYY", String.valueOf(angle));
-                    aksiPanel.setRotation((int)(angle));
+                    aksiPanel.setRotation((int)(angle % 360));
                 }
             };
             anim.setDuration(200);
@@ -64,11 +64,10 @@ public class PilihanTambahan extends Fragment {
 
                 }
             });
-
             if (!hasStarted) aksiPanel.startAnimation(anim);
         });
 
-        ArrayList<String> deretPilihan = new ArrayList();
+        ArrayList<String> deretPilihan = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
             deretPilihan.add(String.valueOf((i + 1) * 1000));
         }
@@ -80,8 +79,6 @@ public class PilihanTambahan extends Fragment {
                 deretPilihan
         );
         pilihan.setAdapter(adapter);
-
-
 
         return panel;
     }
