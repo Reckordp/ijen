@@ -80,6 +80,15 @@ public class PilihanTambahan extends Fragment {
         );
         pilihan.setAdapter(adapter);
 
+        panel.findViewById(R.id.bayar).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MainActivity activity = (MainActivity) getActivity();
+                String dipilih = deretPilihan.get((int) pilihan.getSelectedItemId());
+                activity.pembayaranDipilih(Integer.parseInt(dipilih));
+            }
+        });
+
         return panel;
     }
 }
